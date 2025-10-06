@@ -1,0 +1,7 @@
+# Ignore model & cache
+best_sentiment_model.zip
+.git/lfs/
+__pycache__/
+*.bin
+*.pt
+*.h5
