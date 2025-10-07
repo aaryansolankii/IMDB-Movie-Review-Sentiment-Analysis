@@ -20,8 +20,8 @@ def load_model():
     device = 0 if torch.cuda.is_available() else -1
     clf = pipeline(
         "text-classification",
-        model="best_sentiment_model",
-        tokenizer="best_sentiment_model",
+        model="ary08/best_sentiment_model",  # your Hugging Face repo
+        tokenizer="ary08/best_sentiment_model",
         device=device
     )
     return clf
