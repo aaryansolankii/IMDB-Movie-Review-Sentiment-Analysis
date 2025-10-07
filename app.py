@@ -17,23 +17,24 @@ st.markdown(
 # -------------------------------
 @st.cache_resource(show_spinner=True)
 def load_model():
-    device = 0 if torch.cuda.is_available() else -1
-
+    # 1️⃣ Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained("ary08/best_sentiment_model")
+
+    # 2️⃣ Load 8-bit model with device_map auto
     model = AutoModelForSequenceClassification.from_pretrained(
         "ary08/best_sentiment_model",
-        load_in_8bit=True,
-        device_map="auto"
+        load_in_8bit=True,      # keep 8-bit quantization
+        device_map="auto"       # automatically handles CPU/GPU placement
     )
 
+    # 3️⃣ Create pipeline WITHOUT device argument
     clf = pipeline(
         "text-classification",
         model=model,
-        tokenizer=tokenizer,
-        device=device
+        tokenizer=tokenizer
     )
-    return clf
-    
+
+    return clf    
 clf = load_model()
 
 # -------------------------------
