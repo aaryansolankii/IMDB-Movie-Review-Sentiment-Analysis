@@ -1,7 +1,9 @@
-# Ignore model & cache
+# Ignore large files and LFS artifacts
+best_sentiment_model/
 best_sentiment_model.zip
-.git/lfs/
-__pycache__/
 *.bin
 *.pt
 *.h5
+*.safetensors
+.git/lfs/
+__pycache__/
