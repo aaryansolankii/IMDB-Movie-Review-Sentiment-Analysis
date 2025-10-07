@@ -1,7 +1,7 @@
 # app.py
 import streamlit as st
-from transformers import pipeline
 import torch
+from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
 # -------------------------------
 # 1️⃣ App title
@@ -18,14 +18,22 @@ st.markdown(
 @st.cache_resource(show_spinner=True)
 def load_model():
     device = 0 if torch.cuda.is_available() else -1
+
+    tokenizer = AutoTokenizer.from_pretrained("ary08/best_sentiment_model")
+    model = AutoModelForSequenceClassification.from_pretrained(
+        "ary08/best_sentiment_model",
+        load_in_8bit=True,
+        device_map="auto"
+    )
+
     clf = pipeline(
         "text-classification",
-        model="ary08/best_sentiment_model",  # your Hugging Face repo
-        tokenizer="ary08/best_sentiment_model",
+        model=model,
+        tokenizer=tokenizer,
         device=device
     )
     return clf
-
+    
 clf = load_model()
 
 # -------------------------------
