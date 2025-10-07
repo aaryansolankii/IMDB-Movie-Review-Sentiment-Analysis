@@ -41,3 +41,40 @@ This project demonstrates:
 - **TF-IDF:** `max_features=50000`, `ngram_range=(1,2)`  
 - **Logistic Regression:** `saga solver`, `max_iter=1000`  
 - **Validation Results:**
+- Accuracy: 0.9016
+- F1-score: 0.90
+
+---
+
+## 🤗 Transformer Model (DistilBERT)
+- **Fine-tuning:** Hugging Face `Trainer` API  
+- **Training parameters:**
+  - Learning rate: 2e-5  
+  - Batch size: train=8, eval=16  
+  - Epochs: 3  
+  - Weight decay: 0.01  
+
+- **Test Set Results:**
+- Accuracy: 0.9174
+- Precision: 0.9175
+- Recall: 0.9174
+- F1-score: 0.9174
+
+- **Confusion Matrix:**
+-[[4558 442]
+-[ 384 4616]]
+
+
+---
+
+## 💾 Model Optimization
+- Original size: ~250 MB  
+- Quantized to 8-bit → ~87 MB  
+- Faster loading and lower memory footprint  
+- Suitable for **Streamlit or cloud deployment**
+
+---
+
+## 🖥️ Deployment
+- **Streamlit-ready pipeline** using Hugging Face `pipeline` API  
+- Can run on GPU or CPU  
