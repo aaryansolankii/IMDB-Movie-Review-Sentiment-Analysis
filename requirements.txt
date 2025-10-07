@@ -2,3 +2,5 @@ streamlit
 transformers
 torch
 numpy
+accelerate
+bitsandbytes
